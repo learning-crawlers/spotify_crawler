@@ -32,44 +32,61 @@ def getCategories(token):
 	headers = {'Accept': 'application/json',
 				'Authorization': 'Bearer ' + token}
 
-	params = {'limit': '50'}
-
 	categories = []
-	myResponse = requests.get(url, data = params, headers=headers)
-	if(myResponse.ok):
-	    jData = json.loads(myResponse.content)
-	    tmpList = jData['categories']
-	    for item in tmpList['items']:
-	    	# tmp = item
-	    	categories.append(item['id'])
-	    # writeCsv("123.csv", jData)
-	    return categories
+	offset = 0
+	while True:
+		params = {'limit': '50', 'offset': offset}
+		myResponse = requests.get(url, params=params, headers=headers)
+		if(myResponse.ok):
+			jData = json.loads(myResponse.content)
+			tmpList = jData['categories']
 
-	else:
-	  # If response code is not ok (200), print the resulting http error code with description
-	    myResponse.raise_for_status()
+			offset += len(tmpList['items'])
+			print("length ", len(tmpList['items']))
+
+			if len(tmpList['items']) == 0:
+		   		print('done offset:', offset)
+		   		break
+
+			for item in tmpList['items']:
+				categories.append(item['id'])
+		else:
+		  # If response code is not ok (200), print the resulting http error code with description
+		    myResponse.raise_for_status()
+
+	return categories
 
 def getPlayListFromCategory(id, token):
 	# token = getToken()
 	url = 'https://api.spotify.com/v1/browse/categories/'+id+'/playlists'
 	headers = {'Accept': 'application/json',
 				'Authorization': 'Bearer ' + token}
-	params = {'limit': '50'}
-
+	offset = 0
 	hrefs = []
-	myResponse = requests.get(url, params=params, headers=headers)
+	while True:
+		params = {'limit': '50', 'offset': offset}
+		myResponse = requests.get(url, params=params, headers=headers)
 
-	if(myResponse.ok):
-	    jData = json.loads(myResponse.content)
-	    tmp = jData['playlists']
-	    for item in tmp['items']:
-	    	tmp = item['tracks']
-	    	href = tmp['href']
-	    	hrefs.append(href)
-	    return hrefs
-	else:
-	  # If response code is not ok (200), print the resulting http error code with description
-	    myResponse.raise_for_status()
+		if(myResponse.ok):
+		    jData = json.loads(myResponse.content)
+		    tmp = jData['playlists']
+
+		    offset += len(tmp['items'])
+		    print("length ", len(tmp['items']))
+		    if len(tmp['items']) == 0:
+		    	print('done offset:', offset)
+		    	break
+
+		    for item in tmp['items']:
+		    	tmp = item['tracks']
+		    	href = tmp['href']
+		    	hrefs.append(href)
+		    	# print(hrefs)
+		else:
+		  # If response code is not ok (200), print the resulting http error code with description
+		    myResponse.raise_for_status()
+
+	return hrefs
 
 def getTracksFromPlayList(url, token):
 	# token = getToken()
@@ -79,19 +96,31 @@ def getTracksFromPlayList(url, token):
 				'Authorization': 'Bearer ' + token}
 
 	tracks = []
-	myResponse = requests.get(url, headers=headers)
-	if(myResponse.ok):
-	    jData = json.loads(myResponse.content)
-	    tmp = jData['items']
-	    for item in jData['items']:
-	    	info = item['track']
-	    	tracks.append(info['id'])
-	    # writeCsv("123.csv", jData)
-	    return tracks
+	offset = 0
+	while True:
+		params = {'limit': '100', 'offset': offset}
+		myResponse = requests.get(url, params=params, headers=headers)
+		if(myResponse.ok):
+		    jData = json.loads(myResponse.content)
+		    tmp = jData['items']
+		    print('track offset: ', offset)
+		    if len(jData['items']) == 0:
+		    	print('track done track length: ', len(tracks))
+		    	break
+		    offset += len(jData['items'])
 
-	else:
-	  # If response code is not ok (200), print the resulting http error code with description
-	    myResponse.raise_for_status()
+		    for item in jData['items']:
+		    	info = item['track']
+		    	tracks.append(info['id'])
+		    # writeCsv("123.csv", jData)
+		    # return tracks
+
+		else:
+		  # If response code is not ok (200), print the resulting http error code with description
+		    myResponse.raise_for_status()
+
+	return tracks
+
 
 def writeCsv(newFileName, items, keys):
 	# print("write: "+id)
@@ -145,7 +174,8 @@ def getFeature(ids, token, i):
 if __name__ == '__main__':
 	token = getToken()
 	categoryIds = getCategories(token)
-
+	print('category id length', len(categoryIds))
+	print(categoryIds)
 	#get playlists from catefory id	
 	playLists = []
 	for id in categoryIds:
@@ -171,5 +201,5 @@ if __name__ == '__main__':
 			if len(ids) == 100:
 				getFeature(ids, token, i)
 				ids = []
-				
+
 		getFeature(ids, token, i)
