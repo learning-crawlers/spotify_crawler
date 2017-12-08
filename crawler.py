@@ -122,12 +122,30 @@ def getTracksFromPlayList(url, token):
 	return tracks
 
 
-def writeCsv(newFileName, items, keys):
+def writeCsv(newFileName, items, popItems, keys):
 	# print("write: "+id)
 	print(newFileName)
 	with open(newFileName, 'w', encoding='utf-8') as f:
 		writer = csv.writer(f)
-		writer.writerow(keys)
+		columns = []
+		for key in keys:
+			columns.append(key)
+		columns.append('popularity')
+
+		writer.writerow(columns)
+		# for track in items:
+		# 	keys = []
+		# 	if track is not None:
+		# 		for key in track:
+		# 			keys.append(key)
+		# 		vals = []
+		# 		for key in keys:
+		# 			vals.append(track[key])
+		# 		try:
+		# 			writer.writerow(vals)
+		# 		except:
+		# 			print("out of range")
+		i = 0
 		for track in items:
 			keys = []
 			if track is not None:
@@ -136,16 +154,61 @@ def writeCsv(newFileName, items, keys):
 				vals = []
 				for key in keys:
 					vals.append(track[key])
+				vals.append(popItems[i]['popularity'])
+				i += 1
 				try:
 					writer.writerow(vals)
 				except:
 					print("out of range")
+
 	f.close()
 
 def getFeature(ids, token, i):
 	# token = getToken()
 
 	url = "https://api.spotify.com/v1/audio-features/?ids="
+	popUrl = "https://api.spotify.com/v1/tracks/?ids="
+
+	for id in ids:
+		if id is not None:
+			url += id + ','
+			popUrl += id + ','
+
+	headers = {'Accept': 'application/json',
+				'Authorization': 'Bearer ' + token}
+
+	featureResponse = requests.get(url, headers=headers)
+
+	if(featureResponse.ok):
+	    jData = json.loads(featureResponse.content)
+	    items = jData['audio_features']
+	    keys = []
+	    for track in items:
+	    	if track is not None:
+	    		for key in track:
+	    			keys.append(key)
+	    		break
+
+	    popResponse = requests.get(popUrl[:len(popUrl)-1], headers=headers)
+	    if(popResponse.ok):
+	    	jData = json.loads(popResponse.content)
+	    	popItems = jData['tracks']
+	    	writeCsv('popularity/'+id+'.csv', items, popItems, keys)
+	    else:
+	    	popResponse.raise_for_status()
+	else:
+	  # If response code is not ok (200), print the resulting http error code with description
+	    featureResponse.raise_for_status()
+
+	
+
+
+
+
+def getPopularity(ids, token, i):
+	# token = getToken()
+
+	url = "https://api.spotify.com/v1/tracks/?ids="
 	for id in ids:
 		if id is not None:
 			url += id + ','
@@ -153,18 +216,14 @@ def getFeature(ids, token, i):
 	headers = {'Accept': 'application/json',
 				'Authorization': 'Bearer ' + token}
 
-	myResponse = requests.get(url, headers=headers)
-
+	myResponse = requests.get(url[:len(url)-1], headers=headers)
+	popularity = []
 	if(myResponse.ok):
 	    jData = json.loads(myResponse.content)
-	    items = jData['audio_features']
-	    keys = []
-	    for track in items:
-	    	if track is not None:
-	    		for key in track:
-	    			keys.append(key)
-	    		writeCsv('feature/'+id+'.csv', items, keys)
-	    		break
+	    items = jData['tracks']
+	    # print(items)
+	    for item in items:
+	    	popularity.append(item['popularity'])
 	else:
 	  # If response code is not ok (200), print the resulting http error code with description
 	    myResponse.raise_for_status()
@@ -173,6 +232,7 @@ def getFeature(ids, token, i):
 
 if __name__ == '__main__':
 	token = getToken()
+	print(token)
 	categoryIds = getCategories(token)
 	print('category id length', len(categoryIds))
 	print(categoryIds)
@@ -184,22 +244,36 @@ if __name__ == '__main__':
 
 	#get tracks from playlists
 	tracks = []
-	for i in range(len(playLists)):
-	# for i in range(15):
-		# if i < 12:
-		# 	continue
+	# for i in range(len(playLists)):
+	for i in range(2):
+		if i < 1:
+			continue
 		for url in playLists[i]:
 			tracks.append(getTracksFromPlayList(url, token))
 			print(len(tracks))
 	
 	#get audio feature from max 100 tracks in a batch
+	# for i in range(len(tracks)):
+	# 	ids = []
+
+	# 	for id in tracks[i]:
+	# 		ids.append(id)
+	# 		if len(ids) == 100:
+	# 			getFeature(ids, token, i)
+	# 			ids = []
+
+	# 	getFeature(ids, token, i)
+
+
 	for i in range(len(tracks)):
 		ids = []
 
 		for id in tracks[i]:
 			ids.append(id)
-			if len(ids) == 100:
+			if len(ids) == 49:
 				getFeature(ids, token, i)
 				ids = []
 
 		getFeature(ids, token, i)
+
+
