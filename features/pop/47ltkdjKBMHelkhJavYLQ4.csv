@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.592,0.637,11,-8.48,1,0.0992,0.562,0,0.13,0.565,159.701,audio_features,47ltkdjKBMHelkhJavYLQ4,spotify:track:47ltkdjKBMHelkhJavYLQ4,https://api.spotify.com/v1/tracks/47ltkdjKBMHelkhJavYLQ4,https://api.spotify.com/v1/audio-analysis/47ltkdjKBMHelkhJavYLQ4,185093,4,25

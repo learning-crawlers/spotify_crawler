@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.882,0.545,4,-8.241,0,0.251,0.121,5.96e-05,0.129,0.782,94.983,audio_features,5Rw35kLemvSdxXmpQveQ7B,spotify:track:5Rw35kLemvSdxXmpQveQ7B,https://api.spotify.com/v1/tracks/5Rw35kLemvSdxXmpQveQ7B,https://api.spotify.com/v1/audio-analysis/5Rw35kLemvSdxXmpQveQ7B,221991,4,69

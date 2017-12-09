@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.157,0.0031,2,-33.516,1,0.0503,0.98,0.00915,0.166,0.0355,132.841,audio_features,3zJjAPkTh880oypaAYqlCn,spotify:track:3zJjAPkTh880oypaAYqlCn,https://api.spotify.com/v1/tracks/3zJjAPkTh880oypaAYqlCn,https://api.spotify.com/v1/audio-analysis/3zJjAPkTh880oypaAYqlCn,307893,3,2

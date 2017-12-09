@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.59,0.881,6,-2.898,1,0.0349,0.0913,0,0.157,0.734,129.928,audio_features,3LhzpgimYSZhTx5KuchwVX,spotify:track:3LhzpgimYSZhTx5KuchwVX,https://api.spotify.com/v1/tracks/3LhzpgimYSZhTx5KuchwVX,https://api.spotify.com/v1/audio-analysis/3LhzpgimYSZhTx5KuchwVX,196240,4,72

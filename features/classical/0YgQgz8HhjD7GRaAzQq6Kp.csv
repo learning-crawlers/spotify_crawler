@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.36,0.0826,9,-24.961,1,0.0575,0.988,0.858,0.0782,0.0753,76.411,audio_features,0YgQgz8HhjD7GRaAzQq6Kp,spotify:track:0YgQgz8HhjD7GRaAzQq6Kp,https://api.spotify.com/v1/tracks/0YgQgz8HhjD7GRaAzQq6Kp,https://api.spotify.com/v1/audio-analysis/0YgQgz8HhjD7GRaAzQq6Kp,1004973,4,14

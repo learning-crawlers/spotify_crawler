@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.143,0.11,9,-18.168,1,0.0339,0.975,0.938,0.204,0.075,83.736,audio_features,4CrDfqhlJKXoJUWtAL1Wag,spotify:track:4CrDfqhlJKXoJUWtAL1Wag,https://api.spotify.com/v1/tracks/4CrDfqhlJKXoJUWtAL1Wag,https://api.spotify.com/v1/audio-analysis/4CrDfqhlJKXoJUWtAL1Wag,375838,4,19

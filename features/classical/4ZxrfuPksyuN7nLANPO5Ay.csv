@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.157,0.165,4,-15.915,0,0.0389,0.937,0.684,0.0789,0.0387,90.95,audio_features,4ZxrfuPksyuN7nLANPO5Ay,spotify:track:4ZxrfuPksyuN7nLANPO5Ay,https://api.spotify.com/v1/tracks/4ZxrfuPksyuN7nLANPO5Ay,https://api.spotify.com/v1/audio-analysis/4ZxrfuPksyuN7nLANPO5Ay,1212800,4,24

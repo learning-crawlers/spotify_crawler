@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.767,0.784,1,-2.71,1,0.0745,0.0609,0,0.402,0.696,134.946,audio_features,3AmsRXF45NfjOE9M1sqSXO,spotify:track:3AmsRXF45NfjOE9M1sqSXO,https://api.spotify.com/v1/tracks/3AmsRXF45NfjOE9M1sqSXO,https://api.spotify.com/v1/audio-analysis/3AmsRXF45NfjOE9M1sqSXO,190929,4,33

@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.574,0.269,0,-15.121,1,0.32,0.891,0.938,0.118,0.19,145.699,audio_features,7pC47CSXphMdfZjbFPPalW,spotify:track:7pC47CSXphMdfZjbFPPalW,https://api.spotify.com/v1/tracks/7pC47CSXphMdfZjbFPPalW,https://api.spotify.com/v1/audio-analysis/7pC47CSXphMdfZjbFPPalW,105205,4,54

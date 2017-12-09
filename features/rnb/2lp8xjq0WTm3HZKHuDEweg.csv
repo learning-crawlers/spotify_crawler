@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.8,0.361,6,-10.849,0,0.0635,0.0355,3.75e-06,0.0668,0.887,93.059,audio_features,2lp8xjq0WTm3HZKHuDEweg,spotify:track:2lp8xjq0WTm3HZKHuDEweg,https://api.spotify.com/v1/tracks/2lp8xjq0WTm3HZKHuDEweg,https://api.spotify.com/v1/audio-analysis/2lp8xjq0WTm3HZKHuDEweg,236067,4,59

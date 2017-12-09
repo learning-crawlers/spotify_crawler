@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.775,0.56,8,-8.83,1,0.0359,0.645,0.000578,0.0727,0.381,126.06,audio_features,5steoIXDVUfRvrthREjaRT,spotify:track:5steoIXDVUfRvrthREjaRT,https://api.spotify.com/v1/tracks/5steoIXDVUfRvrthREjaRT,https://api.spotify.com/v1/audio-analysis/5steoIXDVUfRvrthREjaRT,199040,4,19

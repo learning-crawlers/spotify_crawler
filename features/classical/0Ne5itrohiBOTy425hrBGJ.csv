@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.0901,0.178,11,-22.421,1,0.0445,0.869,0.888,0.165,0.0379,87.19,audio_features,0Ne5itrohiBOTy425hrBGJ,spotify:track:0Ne5itrohiBOTy425hrBGJ,https://api.spotify.com/v1/tracks/0Ne5itrohiBOTy425hrBGJ,https://api.spotify.com/v1/audio-analysis/0Ne5itrohiBOTy425hrBGJ,2533813,4,32

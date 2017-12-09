@@ -3,6 +3,8 @@ from requests.auth import HTTPDigestAuth
 import json
 import base64
 import csv
+import os
+import errno
 
 def getToken():
 	clientId = '6bbdf1b0b07b4c6bba857e2cc937074c'
@@ -125,6 +127,13 @@ def getTracksFromPlayList(url, token):
 def writeCsv(newFileName, items, popItems, keys):
 	# print("write: "+id)
 	print(newFileName)
+	if not os.path.exists(os.path.dirname(newFileName)):
+		try:
+			os.makedirs(os.path.dirname(newFileName))
+		except OSError as exc: # Guard against race condition
+			if exc.errno != errno.EEXIST:
+				raise
+
 	with open(newFileName, 'w', encoding='utf-8') as f:
 		writer = csv.writer(f)
 		columns = []
@@ -163,7 +172,7 @@ def writeCsv(newFileName, items, popItems, keys):
 
 	f.close()
 
-def getFeature(ids, token, i):
+def getFeature(ids, token, i, category):
 	# token = getToken()
 
 	url = "https://api.spotify.com/v1/audio-features/?ids="
@@ -193,7 +202,7 @@ def getFeature(ids, token, i):
 	    if(popResponse.ok):
 	    	jData = json.loads(popResponse.content)
 	    	popItems = jData['tracks']
-	    	writeCsv('popularity/'+id+'.csv', items, popItems, keys)
+	    	writeCsv('features/'+category + '/'+id+'.csv', items, popItems, keys)
 	    else:
 	    	popResponse.raise_for_status()
 	else:
@@ -205,7 +214,7 @@ def getFeature(ids, token, i):
 
 
 
-def getPopularity(ids, token, i):
+def getPopularity(ids, token, i, category):
 	# token = getToken()
 
 	url = "https://api.spotify.com/v1/tracks/?ids="
@@ -237,43 +246,32 @@ if __name__ == '__main__':
 	print('category id length', len(categoryIds))
 	print(categoryIds)
 	#get playlists from catefory id	
-	playLists = []
-	for id in categoryIds:
-		playLists.append(getPlayListFromCategory(id, token))
-		print(len(playLists))
+	# playLists = []
+	for cateId in categoryIds:
+		token = getToken()
+		playLists = []
+		playLists.append(getPlayListFromCategory(cateId, token))
 
-	#get tracks from playlists
-	tracks = []
-	# for i in range(len(playLists)):
-	for i in range(2):
-		if i < 1:
-			continue
-		for url in playLists[i]:
-			tracks.append(getTracksFromPlayList(url, token))
-			print(len(tracks))
-	
-	#get audio feature from max 100 tracks in a batch
-	# for i in range(len(tracks)):
-	# 	ids = []
-
-	# 	for id in tracks[i]:
-	# 		ids.append(id)
-	# 		if len(ids) == 100:
-	# 			getFeature(ids, token, i)
-	# 			ids = []
-
-	# 	getFeature(ids, token, i)
-
-
-	for i in range(len(tracks)):
-		ids = []
-
-		for id in tracks[i]:
-			ids.append(id)
-			if len(ids) == 49:
-				getFeature(ids, token, i)
+		#get tracks from playlists
+		print('playlist len', len(playLists))
+		for playListId in playLists:
+		# for i in range(2):
+			# if i < 1:
+			# 	continue
+			print(cateId)
+			tracks = []
+			for url in playListId:
+				tracks.append(getTracksFromPlayList(url, token))
+		
+			for i in range(len(tracks)):
 				ids = []
 
-		getFeature(ids, token, i)
+				for id in tracks[i]:
+					ids.append(id)
+					if len(ids) == 49 and len(ids)>0:
+						getFeature(ids, token, i, cateId)
+						ids = []
+				if len(ids)>0:
+					getFeature(ids, token, i, cateId)
 
 

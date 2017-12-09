@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.33,0.303,10,-17.704,0,0.129,0.73,0.845,0.139,0.0468,76.289,audio_features,3Q80JPrlASoH08ATqniwKw,spotify:track:3Q80JPrlASoH08ATqniwKw,https://api.spotify.com/v1/tracks/3Q80JPrlASoH08ATqniwKw,https://api.spotify.com/v1/audio-analysis/3Q80JPrlASoH08ATqniwKw,271640,4,13

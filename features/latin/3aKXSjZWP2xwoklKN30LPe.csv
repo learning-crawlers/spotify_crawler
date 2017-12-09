@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.831,0.845,0,-4.61,1,0.0381,0.622,1.4e-05,0.274,0.968,102.51,audio_features,3aKXSjZWP2xwoklKN30LPe,spotify:track:3aKXSjZWP2xwoklKN30LPe,https://api.spotify.com/v1/tracks/3aKXSjZWP2xwoklKN30LPe,https://api.spotify.com/v1/audio-analysis/3aKXSjZWP2xwoklKN30LPe,268565,4,40

@@ -1,0 +1,2 @@
+danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,type,id,uri,track_href,analysis_url,duration_ms,time_signature,popularity
+0.637,0.514,1,-6.763,1,0.365,0.0047,0,0.094,0.402,139.931,audio_features,6HZILIRieu8S0iqY8kIKhj,spotify:track:6HZILIRieu8S0iqY8kIKhj,https://api.spotify.com/v1/tracks/6HZILIRieu8S0iqY8kIKhj,https://api.spotify.com/v1/audio-analysis/6HZILIRieu8S0iqY8kIKhj,185947,4,82
