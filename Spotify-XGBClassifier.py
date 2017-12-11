@@ -165,7 +165,7 @@ clf  =  XGBClassifier(
         silent = False
         )
 
-#clf = RandomForestClassifier(n_estimators=100,max_features=17)  
+clf = RandomForestClassifier(n_estimators=100,max_features=17)  
 
 #clf = svm.SVC()        
         
